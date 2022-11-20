@@ -1,0 +1,44 @@
+.news-container {
+  height: calc(100vh - 40px);
+  overflow: auto;
+
+  .news {
+    display: flex;
+    margin: 10px;
+
+    .photo {
+      width: 200px;
+      height: 135px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-left: 16px;
+
+      &__name {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      &__desc {
+        flex: 1;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      &__date {
+
+      }
+      
+    }
+  }
+}
+
+.navigation {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+}

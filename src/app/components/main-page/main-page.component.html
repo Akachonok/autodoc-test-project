@@ -1,0 +1,16 @@
+<!-- название, описание, дата, фото -->
+
+<section class="news-container">
+  <div class="news" *ngFor="let news of newsList">
+    <img class="photo" src="{{ news.titleImageUrl }}" alt="" />
+    <div class="content">
+      <div class="content__name">{{ news.title }}</div>
+      <div class="content__desc">{{ news.description }}</div>
+      <div class="content__date">{{ news.publishedDate }}</div>
+    </div>
+  </div>
+</section>
+
+<footer class="navigation">
+  <button>click</button>
+</footer>
