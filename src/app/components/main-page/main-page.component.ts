@@ -1,4 +1,10 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import {
   catchError,
   distinctUntilChanged,
@@ -14,6 +20,7 @@ import { AutodocService } from 'src/app/services/autodoc.service';
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainPageComponent implements OnInit, OnDestroy {
   private onDestroy$ = new Subject<void>();
@@ -26,14 +33,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
     countNews: 10,
   };
 
-  onWindowScroll(e: any) {
-    if (e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight) {
-      this.listConfig.pageNumber++;
-      this.loadNewsList(this.listConfig);
-    }
-  }
-
-  constructor(private autodocService: AutodocService) {}
+  constructor(
+    private autodocService: AutodocService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.loadNewsList();
@@ -58,8 +61,22 @@ export class MainPageComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe()
-      .add(() => (this.isloadingNewsList = false));
+      .add(() => {
+        this.isloadingNewsList = false;
+        this.cdr.detectChanges();
+      });
+  }
+
+  onWindowScroll(e: any) {
+    if (e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight) {
+      this.listConfig.pageNumber++;
+      this.loadNewsList(this.listConfig);
+    }
   }
 
   openDialog(): void {}
+
+  getUrl(url: string): string {
+    return url.split('/')[1] || '';
+  }
 }

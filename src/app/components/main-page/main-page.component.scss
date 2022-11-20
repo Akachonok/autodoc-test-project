@@ -5,11 +5,14 @@
   .news {
     display: flex;
     margin: 10px;
-    cursor: pointer;
     padding: 10px;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
 
     .photo {
       height: 135px;
+      width: 200px;
     }
 
     .content {
@@ -60,6 +63,7 @@
 
       .photo {
         height: auto;
+        width: auto;
       }
 
       .content {
