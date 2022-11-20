@@ -1,3 +1,10 @@
-<p>
-  detail-information works!
-</p>
+<div class="container" *ngIf="!isloadingNews">
+  <span class="title">{{ news.title }}</span>
+  <span class="date">{{ news.publishedDate | date }}</span>
+
+  <p [innerHTML]="getText(news.text)"></p>
+</div>
+
+<div class="spinner" *ngIf="isloadingNews">
+  <mat-spinner></mat-spinner>
+</div>

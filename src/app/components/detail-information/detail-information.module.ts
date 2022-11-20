@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DetailInformationComponent } from './detail-information.component';
 import { RouterModule, Routes } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const routes: Routes = [
   {
@@ -12,7 +13,11 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [DetailInformationComponent],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    MatProgressSpinnerModule,
+    RouterModule.forChild(routes),
+  ],
   exports: [DetailInformationComponent],
 })
 export class DetailInformationModule {}

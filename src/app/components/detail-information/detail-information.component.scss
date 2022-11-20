@@ -1,0 +1,20 @@
+.container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    font-size: 24px;
+  }
+
+  .date {
+    color: gray;
+  }
+}
+
+.spinner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
