@@ -37,4 +37,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
       )
       .subscribe();
   }
+
+  openDialog(): void {}
 }

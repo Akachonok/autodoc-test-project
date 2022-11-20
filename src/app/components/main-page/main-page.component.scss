@@ -1,13 +1,14 @@
 .news-container {
-  height: calc(100vh - 40px);
+  height: calc(100vh - 50px);
   overflow: auto;
 
   .news {
     display: flex;
     margin: 10px;
+    cursor: pointer;
+    padding: 10px;
 
     .photo {
-      width: 200px;
       height: 135px;
     }
 
@@ -23,22 +24,42 @@
       }
 
       &__desc {
+        padding-top: 4px;
         flex: 1;
         overflow: hidden;
-        white-space: nowrap;
-      }
-
-      &__date {
-
-      }
+        text-overflow: ellipsis
+      }   
       
+      &__date {
+        color: gray;
+      }
     }
+  }
+
+  .news:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.5)
   }
 }
 
 .navigation {
-  height: 40px;
+  height: 50px;
   display: flex;
   align-items: center;
-  padding-left: 16px;
+  padding-left: 10px;
+}
+
+@media (max-width: 700px) {
+  .news-container {
+    .news {
+      flex-direction: column;
+
+      .photo {
+        height: auto;
+      }
+
+      .content {
+        margin-left: 0;
+      }
+    }
+}
 }

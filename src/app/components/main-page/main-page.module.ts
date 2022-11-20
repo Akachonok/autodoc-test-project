@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainPageComponent } from './main-page.component';
 import { RouterModule, Routes } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
   {
@@ -19,7 +20,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [MainPageComponent],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [CommonModule, MatButtonModule, RouterModule.forChild(routes)],
   exports: [MainPageComponent],
 })
 export class MainPageModule {}
