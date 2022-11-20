@@ -8,6 +8,13 @@ const routes: Routes = [
     path: '',
     component: MainPageComponent,
   },
+  {
+    path: ':id',
+    loadChildren: () =>
+      import('./../detail-information/detail-information.module').then(
+        (m) => m.DetailInformationModule
+      ),
+  },
 ];
 
 @NgModule({

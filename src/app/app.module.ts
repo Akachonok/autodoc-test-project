@@ -10,20 +10,19 @@ import { HttpClientModule } from '@angular/common/http';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/cars-list',
+    redirectTo: '/avto-novosti',
     pathMatch: 'full',
   },
   {
-    path: 'cars-list',
+    path: 'avto-novosti',
     loadChildren: () =>
       import('./components/main-page/main-page.module').then(
         (m) => m.MainPageModule
       ),
   },
-
   {
     path: '**',
-    redirectTo: 'cars-list',
+    redirectTo: 'avto-novosti',
   },
 ];
 

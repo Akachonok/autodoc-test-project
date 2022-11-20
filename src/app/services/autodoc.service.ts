@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
-import { ICarsList, ICarInformation } from '../models/cars';
+import { INewsInformation, INewsList } from '../models/news';
 
 const apiConfig = {
   apiUrl: `${environment.apiUrl}/api/news`,
@@ -17,17 +17,17 @@ const apiConfig = {
 export class AutodocService {
   constructor(private http: HttpClient) {}
 
-  getCarsList(
+  getNewsList(
     pageNumber: number = 1,
     elementsCount: number = 10
-  ): Observable<ICarsList> {
-    return this.http.get<ICarsList>(
+  ): Observable<INewsList> {
+    return this.http.get<INewsList>(
       `${apiConfig.apiUrl}/${pageNumber}/${elementsCount}`
     );
   }
 
-  getCarInfoimationByName(name: string): Observable<ICarInformation> {
-    return this.http.get<ICarInformation>(
+  getNewsInfoimationByName(name: string): Observable<INewsInformation> {
+    return this.http.get<INewsInformation>(
       `${apiConfig.apiUrl}/item/avto-novosti/${name}`
     );
   }

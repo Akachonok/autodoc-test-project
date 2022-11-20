@@ -1,4 +1,9 @@
-export interface ICarsList {
+export interface INewsList {
+  news: INews[];
+  totalCount: number;
+}
+
+export interface INews {
   id: number;
   title: string;
   description: string;
@@ -9,7 +14,7 @@ export interface ICarsList {
   categoryType: string;
 }
 
-export interface ICarInformation {
+export interface INewsInformation {
   id: number;
   title: string;
   description: string;
