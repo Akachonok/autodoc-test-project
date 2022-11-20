@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MainPageComponent } from './main-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const routes: Routes = [
   {
@@ -20,7 +21,12 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [MainPageComponent],
-  imports: [CommonModule, MatButtonModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    RouterModule.forChild(routes),
+  ],
   exports: [MainPageComponent],
 })
 export class MainPageModule {}

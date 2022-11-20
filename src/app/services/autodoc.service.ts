@@ -17,10 +17,7 @@ const apiConfig = {
 export class AutodocService {
   constructor(private http: HttpClient) {}
 
-  getNewsList(
-    pageNumber: number = 1,
-    elementsCount: number = 10
-  ): Observable<INewsList> {
+  getNewsList({ pageNumber = 1, elementsCount = 10 }): Observable<INewsList> {
     return this.http.get<INewsList>(
       `${apiConfig.apiUrl}/${pageNumber}/${elementsCount}`
     );

@@ -1,14 +1,20 @@
-<section class="news-container">
+<section class="news-container" (scroll)="onWindowScroll($event)">
   <div class="news" *ngFor="let news of newsList">
-    <img class="photo" src="{{ news.titleImageUrl }}" alt="" />
+    <img class="photo" [src]="news.titleImageUrl" alt="" />
     <div class="content">
       <div class="content__name">{{ news.title }}</div>
       <div class="content__desc">{{ news.description }}</div>
       <div class="content__date">{{ news.publishedDate | date }}</div>
     </div>
   </div>
+
+  <div class="spinner" *ngIf="isloadingNewsList">
+    <mat-spinner></mat-spinner>
+  </div>
 </section>
 
 <footer class="navigation mat-elevation-z8">
-  <button mat-button (click)="openDialog()">Добавить новость</button>
+  <button mat-button (click)="openDialog()" [disabled]="isloadingNewsList">
+    Добавить новость
+  </button>
 </footer>
