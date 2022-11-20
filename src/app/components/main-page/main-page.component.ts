@@ -74,13 +74,14 @@ export class MainPageComponent implements OnInit, OnDestroy {
       .subscribe()
       .add(() => {
         this.isloadingNewsList = false;
-        this.setNews();
+        this.setNewsList();
         this.cdr.detectChanges();
       });
   }
 
-  setNews(): void {
-    const state = this.localStorageService.getState();
+  setNewsList(): void {
+    const state = this.localStorageService.getState() || [];
+
     this.newsList = [...state.reverse(), ...this.serverNews];
   }
 
@@ -100,8 +101,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
         tap((result) => {
           if (!result) return;
 
+          console.log(result);
+
           this.localStorageService.saveState(result);
-          this.setNews();
+          this.setNewsList();
         })
       )
       .subscribe()

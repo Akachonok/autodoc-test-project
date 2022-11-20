@@ -6,7 +6,7 @@ import { INews } from '../models/news';
 })
 export class LocalStorageService {
   saveState(state: INews): void {
-    const newState = this.getState() || [];
+    const newState = this.getState();
 
     newState.push(state);
 
@@ -14,6 +14,6 @@ export class LocalStorageService {
   }
 
   getState(): INews[] {
-    return JSON.parse(localStorage.getItem('state') || '') || [];
+    return JSON.parse(localStorage.getItem('state') || '[]');
   }
 }
