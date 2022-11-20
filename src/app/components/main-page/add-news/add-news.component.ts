@@ -20,15 +20,16 @@ export class AddNewsComponent implements OnInit {
 
     reader.readAsDataURL(event.files[0]);
     reader.onload = (value) => {
-      this.form.controls['file'].setValue(value.target?.result);
+      this.form.controls['titleImageUrl'].setValue(value.target?.result);
     };
   }
 
   initForm(): void {
     this.form = new FormGroup({
-      name: new FormControl(null, Validators.required),
+      title: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
-      file: new FormControl(null, Validators.required),
+      titleImageUrl: new FormControl(null, Validators.required),
+      publishedDate: new FormControl(new Date()),
     });
   }
 }

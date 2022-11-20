@@ -15,6 +15,9 @@ import {
 } from 'rxjs';
 import { INews } from 'src/app/models/news';
 import { AutodocService } from 'src/app/services/autodoc.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddNewsComponent } from './add-news/add-news.component';
+import { LocalStorageService } from 'src/app/services/localStorage.service';
 
 @Component({
   selector: 'app-main-page',
@@ -25,8 +28,9 @@ import { AutodocService } from 'src/app/services/autodoc.service';
 export class MainPageComponent implements OnInit, OnDestroy {
   private onDestroy$ = new Subject<void>();
 
-  isloadingNewsList: boolean = false;
   newsList: INews[] = [];
+  serverNews: INews[] = [];
+  isloadingNewsList: boolean = false;
 
   listConfig = {
     pageNumber: 1,
@@ -35,7 +39,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private autodocService: AutodocService,
-    private cdr: ChangeDetectorRef
+    private localStorageService: LocalStorageService,
+    private cdr: ChangeDetectorRef,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -57,14 +63,20 @@ export class MainPageComponent implements OnInit, OnDestroy {
         takeUntil(this.onDestroy$),
         catchError((error) => EMPTY),
         tap((result) => {
-          this.newsList.push(...result.news);
+          this.serverNews.push(...result.news);
         })
       )
       .subscribe()
       .add(() => {
         this.isloadingNewsList = false;
+        this.setNews();
         this.cdr.detectChanges();
       });
+  }
+
+  setNews(): void {
+    const state = this.localStorageService.getState();
+    this.newsList = [...state.reverse(), ...this.serverNews];
   }
 
   onWindowScroll(e: any) {
@@ -74,9 +86,24 @@ export class MainPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  openDialog(): void {}
+  openDialog(): void {
+    this.dialog
+      .open(AddNewsComponent, { width: '500px' })
+      .afterClosed()
+      .pipe(
+        takeUntil(this.onDestroy$),
+        tap((result) => {
+          if (!result) return;
+
+          this.localStorageService.saveState(result);
+          this.setNews();
+        })
+      )
+      .subscribe()
+      .add(() => this.cdr.detectChanges());
+  }
 
   getUrl(url: string): string {
-    return url.split('/')[1] || '';
+    return url?.split('/')[1] || '';
   }
 }

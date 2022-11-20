@@ -12,7 +12,12 @@
   }
 }
 
-.spinner {
+.no-information {
+  font-size: 40px;
+  color: gray;
+}
+
+.spinner, .no-information  {
   height: 100%;
   display: flex;
   align-items: center;

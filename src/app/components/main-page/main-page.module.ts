@@ -4,6 +4,12 @@ import { MainPageComponent } from './main-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AddNewsComponent } from './add-news/add-news.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const routes: Routes = [
   {
@@ -20,10 +26,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [MainPageComponent],
+  declarations: [MainPageComponent, AddNewsComponent],
   imports: [
     CommonModule,
     MatButtonModule,
+    MatDialogModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
     MatProgressSpinnerModule,
     RouterModule.forChild(routes),
   ],

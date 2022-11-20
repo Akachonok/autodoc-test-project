@@ -1,9 +1,13 @@
-<div class="container" *ngIf="!isloadingNews">
+<div class="container" *ngIf="!isloadingNews && news">
   <span class="title">{{ news.title }}</span>
   <span class="date">{{ news.publishedDate | date }}</span>
 
   <p [innerHTML]="getText(news.text)"></p>
 </div>
+
+<span *ngIf="!isloadingNews && !news" class="no-information"
+  >Нет информации</span
+>
 
 <div class="spinner" *ngIf="isloadingNews">
   <mat-spinner></mat-spinner>
