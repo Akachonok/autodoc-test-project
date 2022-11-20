@@ -18,6 +18,7 @@ import { AutodocService } from 'src/app/services/autodoc.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddNewsComponent } from './add-news/add-news.component';
 import { LocalStorageService } from 'src/app/services/localStorage.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-main-page',
@@ -40,6 +41,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   constructor(
     private autodocService: AutodocService,
     private localStorageService: LocalStorageService,
+    private snackBar: MatSnackBar,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog
   ) {}
@@ -61,7 +63,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
       .pipe(
         distinctUntilChanged(),
         takeUntil(this.onDestroy$),
-        catchError((error) => EMPTY),
+        catchError(() => {
+          this.snackBar.open('Что-то пошло не так');
+          return EMPTY;
+        }),
         tap((result) => {
           this.serverNews.push(...result.news);
         })
