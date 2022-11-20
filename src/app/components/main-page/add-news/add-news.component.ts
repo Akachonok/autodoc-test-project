@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -9,6 +10,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class AddNewsComponent implements OnInit {
   form: FormGroup;
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: unknown) {}
 
   ngOnInit(): void {

@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DetailInformationComponent } from './detail-information.component';
 import { RouterModule, Routes } from '@angular/router';
+
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+import { DetailInformationComponent } from './detail-information.component';
 
 const routes: Routes = [
   {

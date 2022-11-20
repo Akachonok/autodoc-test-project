@@ -7,8 +7,11 @@ import {
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+
 import { catchError, EMPTY, Subject, takeUntil, tap } from 'rxjs';
+
 import { INewsInformation } from 'src/app/models/news';
+
 import { AutodocService } from 'src/app/services/autodoc.service';
 
 @Component({
@@ -51,13 +54,11 @@ export class DetailInformationComponent implements OnInit, OnDestroy {
       .getNewsInfoimationByName(carName)
       .pipe(
         takeUntil(this.onDestroy$),
-        catchError((error) => EMPTY),
+        catchError(() => EMPTY),
         tap((result) => (this.news = result))
       )
       .subscribe()
       .add(() => {
-        console.log(this.news);
-
         this.isloadingNews = false;
         this.cdr.detectChanges();
       });

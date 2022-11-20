@@ -5,6 +5,7 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
+
 import {
   catchError,
   distinctUntilChanged,
@@ -13,12 +14,16 @@ import {
   takeUntil,
   tap,
 } from 'rxjs';
-import { INews } from 'src/app/models/news';
-import { AutodocService } from 'src/app/services/autodoc.service';
+
 import { MatDialog } from '@angular/material/dialog';
-import { AddNewsComponent } from './add-news/add-news.component';
-import { LocalStorageService } from 'src/app/services/localStorage.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { INews } from 'src/app/models/news';
+
+import { LocalStorageService } from 'src/app/services/localStorage.service';
+import { AutodocService } from 'src/app/services/autodoc.service';
+
+import { AddNewsComponent } from './add-news/add-news.component';
 
 @Component({
   selector: 'app-main-page',
@@ -100,8 +105,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
         takeUntil(this.onDestroy$),
         tap((result) => {
           if (!result) return;
-
-          console.log(result);
 
           this.localStorageService.saveState(result);
           this.setNewsList();
