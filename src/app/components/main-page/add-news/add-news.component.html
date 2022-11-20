@@ -1,0 +1,36 @@
+<div class="form-container" [formGroup]="form">
+  <h1>Добавлние новости</h1>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Название</mat-label>
+    <input formControlName="name" matInput placeholder="Название" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Описание</mat-label>
+    <textarea
+      rows="3"
+      matInput
+      cdkTextareaAutosize
+      placeholder="Описание"
+      formControlName="description"
+    ></textarea>
+  </mat-form-field>
+
+  <p>
+    Drop file <span (click)="fileInput.click()" class="link">browse..</span>
+  </p>
+  <input
+    #fileInput
+    hidden
+    multiple
+    (change)="handle($event.target)"
+    accept="image/png, image/jpeg"
+    type="file"
+  />
+
+  <div class="button-wrap">
+    <button mat-button [mat-dialog-close]="false">Закрыть</button>
+    <button mat-button [mat-dialog-close]="form.value">Сохранить</button>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+
+  .link {
+    color: blue;
+    cursor: pointer;
+  }
+
+  .button-wrap {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
